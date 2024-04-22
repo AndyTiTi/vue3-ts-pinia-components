@@ -1,11 +1,14 @@
 <template>
   <div>
     <el-button @click="handleClick" type="primary">Click</el-button>
+    <image-upload v-model:value="imgUrl" />
+    <img :src="imgUrl" alt="">
   </div>
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue';
+import { ref, getCurrentInstance } from 'vue';
+const imgUrl = ref('')
 
 const instance = getCurrentInstance() as any;
 const { proxy } = instance;
