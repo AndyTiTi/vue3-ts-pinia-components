@@ -38,8 +38,8 @@ app.component('MyComponent', MyComponent);
 app.mount('#app');
 ```
 
-## 文档
-查看完整的文档和组件列表，请访问 [vue3-ts-pinia-components Documentation](https://your-docs-url.com)
+## 资源文档
+查看进阶资源文档，请访问 [栈先锋](https://yirengongsi.com)
 
 ## 贡献
 欢迎任何形式的贡献，包括但不限于：
@@ -48,18 +48,5 @@ app.mount('#app');
 - 新增组件
 - 改进文档
 
-在开始之前，请查看 [CONTRIBUTING.md](https://github.com/your-username/vue3-ts-pinia-components/blob/main/CONTRIBUTING.md)
-
-## 许可证
-本项目遵循 [MIT License](https://github.com/your-username/vue3-ts-pinia-components/blob/main/LICENSE)
-
-## 作者
-感谢以下贡献者：
-- Your Name
-- [More contributors...](https://github.com/your-username/vue3-ts-pinia-components/graphs/contributors)
-
 ## 支持
 如果你觉得这个项目对你有帮助，请不要犹豫给我们一个 star ⭐
-```
-
-请将 `https://your-docs-url.com`、`your-username` 和其他占位符替换为实际的 URL 和 GitHub 用户名。如果项目有特定的文档链接或贡献指南，也请相应地更新链接。此外，如果项目有特定的许可证，也请确保链接到正确的许可证文件。

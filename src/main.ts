@@ -6,7 +6,7 @@ import zhCn from "element-plus/es/locale/lang/zh-cn";
 import installPlugins from "./plugins";
 import ImagePreview from "@/components/ImagePreview/index.vue";
 import ImageUpload from "@/components/ImageUpload/index.vue";
-
+import pinia from "./store";
 import "./style.scss";
 import App from "./App.vue";
 import router from "./router";
@@ -17,7 +17,8 @@ const app = createApp(App);
 app.use(ElementPlus, {
   locale: zhCn,
 });
-
+// pinia
+app.use(pinia);
 // 注册全局组件
 app.component("ImagePreview", ImagePreview);
 app.component("ImageUpload", ImageUpload);
