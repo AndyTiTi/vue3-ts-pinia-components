@@ -65,5 +65,6 @@ app.mount("#app");
 pnpm install eslint vue-eslint-parser eslint-plugin-vue eslint-plugin-prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier -S
 ```
 
-- [ESLint 插件之间的区别（一）](https://juejin.cn/post/70385448754951034920)
-- [ESLint 插件之间的区别（二）](https://juejin.cn/post/70385448754951034920)
+- [ESLint 插件之 @vue/eslint-config-typescript 和 plugin:@typescript-eslint/recommended 的区别](https://yirengongsi.com/blog/ESLint%E6%8F%92%E4%BB%B6%E7%B3%BB%E5%88%97/ESLint%E6%8F%92%E4%BB%B6@vue'eslint-config-typescript%E5%92%8Cplugin'@typescript-eslint'recommended.html)
+- [ESLint 插件之 plugin:prettier/recommended 和 @vue/eslint-config-prettier/skip-formatting 的区别](https://yirengongsi.com/blog/ESLint%E6%8F%92%E4%BB%B6%E7%B3%BB%E5%88%97/ESLint%E6%8F%92%E4%BB%B6plugin'prettier'recommended%E5%92%8C@vue'eslint-config-prettier'skip-formatting%E7%9A%84%E5%8C%BA%E5%88%AB.html)
+- [ESLint 插件之 plugin:vue/vue3-essential 和 plugin:vue/vue3-recommended 的区别](https://yirengongsi.com/blog/ESLint%E6%8F%92%E4%BB%B6%E7%B3%BB%E5%88%97/ESLint%E6%8F%92%E4%BB%B6vue3-essential%E5%92%8Cvue3-reommended%E7%9A%84%E5%8C%BA%E5%88%AB.html)

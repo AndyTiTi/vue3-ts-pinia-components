@@ -9,11 +9,14 @@ declare module 'vue' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
     ElUpload: typeof import('element-plus/es')['ElUpload']
     ImagePreview: typeof import('./src/components/ImagePreview/index.vue')['default']
     ImageUpload: typeof import('./src/components/ImageUpload/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SingleImageUpload: typeof import('./src/components/SingleImageUpload/index.vue')['default']
+    SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
   }
 }
