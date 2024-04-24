@@ -4,13 +4,16 @@
     "plugin:vue/vue3-essential",
     "eslint:recommended",
     "@vue/eslint-config-typescript",
+    //  ESLint 会跳过 Prettier 负责的格式化规则，转而使用 ESLint 的规则来进行代码格式化
+    // "@vue/eslint-config-prettier/skip-formatting"
+    // 允许 Prettier 管理格式化规则，Prettier 通常能够很好地处理 HTML 和 Vue 模板中的属性换行
     "@vue/eslint-config-prettier/skip-formatting"
   ],
   "parserOptions": {
     "ecmaVersion": "latest"
   },
   "rules": {
-    "vue/multi-word-component-names": "off",
-    "no-async-promise-executor": "off"
+    "vue/html-self-closing": "off", // 关闭 ESLint 规则，让 Prettier 处理
+    "vue/multi-word-component-names": "off"
   }
 }
