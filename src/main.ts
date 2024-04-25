@@ -8,7 +8,9 @@ import ImagePreview from "@/components/ImagePreview/index.vue"
 import ImageUpload from "@/components/ImageUpload/index.vue"
 import SingleImageUpload from "@/components/SingleImageUpload/index.vue"
 import pinia from "./store"
-import "./style.scss"
+
+// global css
+import "@/assets/styles/index.scss"
 import App from "./App.vue"
 import router from "./router"
 
