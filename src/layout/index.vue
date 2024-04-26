@@ -14,4 +14,9 @@ import Sidebar from "@/components/Sidebar/index.vue"
 import AppMain from "@/components/AppMain/index.vue"
 </script>
 
-<style scoped></style>
+<style scoped>
+.content {
+  height: calc(100vh - 50px);
+  overflow: hidden;
+}
+</style>

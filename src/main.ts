@@ -14,6 +14,7 @@ import "@/assets/styles/index.scss"
 import App from "./App.vue"
 import router from "./router"
 
+import './permission'
 // svg图标
 import "virtual:svg-icons-register"
 import SvgIcon from "@/components/SvgIcon/index.vue"
@@ -39,6 +40,10 @@ app.use(installPlugins)
 app.use(elementIcons)
 app.component("svg-icon", SvgIcon)
 
+console.log(
+  "🚀 ~ router.beforeEach 所有路由:",
+  router.getRoutes()
+)
 // 注册路由
 app.use(router)
 console.log(app, "--------EPIcons----------")
