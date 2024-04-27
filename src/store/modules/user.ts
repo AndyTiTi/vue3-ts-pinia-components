@@ -11,11 +11,28 @@ const useUserStore = defineStore("user", {
   state: () => ({
     name: "",
     userId: "",
-    avatar: ""
+    avatar: "",
+    token: ""
   }),
   actions: {
     setUserInfo(userInfo: any) {
       this.name = userInfo.name
+    },
+    accountLogin(from: any) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          this.token = "abcdef"
+          this.name = "John Doe"
+          this.userId = "123456"
+          this.avatar = "https://avatars.githubusercontent.com/u/349336?v=4"
+          resolve({
+            token: this.token,
+            name: this.name,
+            userId: this.userId,
+            avatar: this.avatar
+          })
+        }, 1000)
+      })
     },
     getUserInfo() {
       // 获取用户信息

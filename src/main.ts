@@ -18,7 +18,7 @@ import './permission'
 // svg图标
 import "virtual:svg-icons-register"
 import SvgIcon from "@/components/SvgIcon/index.vue"
-import elementIcons from "@/components/SvgIcon/svgicon"
+import registerIcons from "@/components/SvgIcon/svgicon"
 
 const app = createApp(App)
 
@@ -37,7 +37,7 @@ app.component("SingleImageUpload", SingleImageUpload)
 app.use(installPlugins)
 
 // svg图标
-app.use(elementIcons)
+app.use(registerIcons)
 app.component("svg-icon", SvgIcon)
 
 console.log(

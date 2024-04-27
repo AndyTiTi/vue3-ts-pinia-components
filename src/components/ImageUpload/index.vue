@@ -40,7 +40,6 @@ import { ref, getCurrentInstance, computed, watch, PropType } from "vue"
 import { getToken } from "@/utils/auth"
 
 import type { UploadProps, UploadUserFile } from "element-plus"
-import { Plus } from "@element-plus/icons-vue"
 
 type ModelValueType = string | any[]
 

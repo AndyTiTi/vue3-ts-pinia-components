@@ -1,45 +1,111 @@
 <template>
-  <div>
-    <image-upload v-model="imgUrl" :limit="2" />
-    <svg-icon icon-class="peoples" />
-    <el-icon>
-      <Plus />
-    </el-icon>
-    <el-icon>
-      <Minus />
-    </el-icon>
-    <single-image-upload v-model="imgUrl" />
+  <div class="app-container">
+    <div class="login-panel">
+      <h1 class="title">后台管理系统</h1>
+      <el-tabs v-model="activeName" type="border-card" stretch>
+        <el-tab-pane name="account">
+          <template #label>
+            <div class="label">
+              <el-icon><user-filled /></el-icon>
+              <span class="text">帐号登录</span>
+            </div>
+          </template>
+          <pane-account ref="accountRef" />
+        </el-tab-pane>
+
+        <el-tab-pane name="phone">
+          <template #label>
+            <div class="label">
+              <el-icon><cellphone /></el-icon>
+              <span class="text">手机登录</span>
+            </div>
+          </template>
+          <pane-phone ref="phoneRef" />
+        </el-tab-pane>
+      </el-tabs>
+      <div class="controls">
+        <el-checkbox v-model="rememberMe" label="记住我" size="large" />
+        <el-link type="primary">忘记密码</el-link>
+      </div>
+      <el-button
+        @click="handleLoginClick"
+        size="large"
+        class="login-btn"
+        type="primary"
+      >
+        立即登录
+      </el-button>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, getCurrentInstance } from "vue"
-import useUserStore from "@/store/modules/user"
-import { CommitResponse } from "@/types/user.type"
+import { ref } from "vue"
+import PaneAccount from "./PaneAccount.vue"
+import PanePhone from "./PanePhone.vue"
+const activeName = ref("account")
+const rememberMe = ref(false)
 
-// 在 Vue 组件中定义响应式引用
-const userList = ref<CommitResponse[]>([])
+const accountRef = ref<InstanceType<typeof PaneAccount>>()
+const phoneRef = ref<InstanceType<typeof PanePhone>>()
 
-const imgUrl = ref("")
-
-const instance = getCurrentInstance() as any
-const { proxy } = instance
-console.log("🚀 ~ proxy:", instance.appContext.config.globalProperties)
-
-const { getUserAvatar, getUserInfo, avatar } = useUserStore()
-console.log("🚀 ~ avatar:", avatar)
-
-// 由于 getUserAvatar 返回一个 Promise，我们可以使用 async/await 或者 then/catch 来处理异步操作
-getUserInfo()
-getUserAvatar()
-  .then(res => {
-    console.log(res)
-    userList.value = res // res 已经被推断为 CommitResponse[] 类型
-  })
-  .catch(error => {
-    console.error("获取用户头像失败:", error)
-  })
-
+function handleLoginClick() {
+  if (activeName.value === "account") {
+    // 获取子组件的实例
+    accountRef.value?.loginAction()
+    console.log("account")
+  } else {
+    phoneRef.value?.loginAction()
+    console.log("phone")
+  }
+}
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.login-panel {
+  width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+
+  .title {
+    text-align: center;
+  }
+}
+
+.el-tabs {
+  ::v-deep .el-tabs__header {
+    margin-bottom: 20px;
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .el-icon {
+      margin-right: 5px;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.login-btn {
+  width: 100%;
+}
+</style>

@@ -14,9 +14,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --el-text-color-primary: #ffffff;
-  --el-text-color-regular: #c8c8c8;
-  --el-fill-color-blank: #263445;
+  // --el-text-color-primary: #ffffff;
+  // --el-text-color-regular: #c8c8c8;
+  // --el-fill-color-blank: #263445;
 }
 
 a {
@@ -26,7 +26,6 @@ a {
 }
 
 html {
-  height: 100%;
   box-sizing: border-box;
 }
 
@@ -37,27 +36,27 @@ body {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
 }
 
 #app {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  /* 添加磨砂效果，使用径向渐变模糊 */
+  background-image: linear-gradient(135deg, #a5d2df 0%, #07829e 100%),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 50%,
+      transparent
+    );
+  /* 确保背景覆盖整个容器并延伸到足够大，以适应不同尺寸的屏幕 */
+  background-size: cover;
+  background-attachment: fixed;
+  /* 使用box-shadow添加一些深度 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .h-full {
   height: 100%;

@@ -16,7 +16,6 @@
 
 <script lang="ts" setup>
 import { ElMessage } from "element-plus"
-import { Plus } from "@element-plus/icons-vue"
 import { getToken } from "@/utils/auth"
 
 import type { UploadProps } from "element-plus"

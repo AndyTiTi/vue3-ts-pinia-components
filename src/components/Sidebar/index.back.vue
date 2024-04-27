@@ -41,12 +41,6 @@
 
 <script lang="ts" setup>
 import { computed } from "vue"
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting
-} from "@element-plus/icons-vue"
 import useSidebar from "@/store/modules/sidebar"
 const sidebarStatus = useSidebar()
 
