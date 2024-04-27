@@ -15,7 +15,7 @@
 <script setup lang="ts"></script>
 
 <style lang="scss">
-:v-deep .el-breadcrumb__inner a {
+:deep(.el-breadcrumb__inner a) {
   color: white !important;
 }
 </style>

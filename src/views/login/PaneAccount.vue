@@ -21,6 +21,8 @@
 import useUserStore from "@/store/modules/user"
 import { ElMessage, type ElForm, type FormRules } from "element-plus"
 import { reactive, ref } from "vue"
+import { useRouter } from "vue-router"
+const router = useRouter()
 const userStore = useUserStore()
 const form = reactive({
   account: "",
@@ -49,6 +51,7 @@ function loginAction() {
       // 验证通过，可以进行登录操作
       userStore.accountLogin(form).then(res => {
         console.log("🚀 ~ userStore.accountLogin ~ res:", res)
+        router.push("/")
       })
     } else {
       ElMessage.error("请检查输入信息")

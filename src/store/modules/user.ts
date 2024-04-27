@@ -34,6 +34,13 @@ const useUserStore = defineStore("user", {
         }, 1000)
       })
     },
+    logout() {
+      // 退出登录
+      this.token = ""
+      this.name = ""
+      this.userId = ""
+      this.avatar = ""
+    },
     getUserInfo() {
       // 获取用户信息
       return new Promise((resolve, reject) => {

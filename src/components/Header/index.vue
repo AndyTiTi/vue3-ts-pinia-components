@@ -4,10 +4,10 @@
       <div class="header-left flex items-center">
         <Hamburger />
         <h1 class="mx-4 header-title">后台管理系统</h1>
-        <Breadcrumb />
+        <!-- <Breadcrumb /> -->
       </div>
       <div class="header-right flex items-center">
-        <span class="user-name mr-3"> Title </span>
+        <span class="user-name mr-3" @click="handleLogout"> 退出登录 </span>
         <el-avatar
           :size="32"
           src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
@@ -20,6 +20,16 @@
 <script setup lang="ts">
 import Hamburger from "@/components/Hamburger/index.vue"
 import Breadcrumb from "@/components/Breadcrumb/index.vue"
+import useUserStore from "@/store/modules/user"
+import { useRouter } from "vue-router"
+const router = useRouter()
+
+function handleLogout() {
+  // 退出登录逻辑
+  useUserStore().logout()
+
+  router.push("/login")
+}
 </script>
 
 <style lang="scss" scoped>
@@ -38,6 +48,7 @@ import Breadcrumb from "@/components/Breadcrumb/index.vue"
   .header-right {
     .user-name {
       font-size: 14px;
+      cursor: pointer;
     }
   }
   .logo {

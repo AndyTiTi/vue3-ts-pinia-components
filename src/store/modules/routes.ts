@@ -21,10 +21,6 @@ const useRoutes = defineStore("authRoutes", {
         getRouters().then(res => {
           const rdata = JSON.parse(JSON.stringify(res))
           const rewriteRoutes = filterAsyncRouter(rdata, undefined, true)
-          console.log(
-            "🚀 ~ getRouters ~ rewriteRoutes ===========>:",
-            rewriteRoutes
-          )
           this.setAuthRouter(rewriteRoutes)
           resolve(rewriteRoutes)
         })
@@ -42,15 +38,12 @@ function filterAsyncRouter(
   return asyncRouterMap.filter(route => {
     if (type && route.children) {
       route.children = filterChildren(route.children)
-      console.log("🚀 ~ route.children:", route.children)
     }
     if (route.component) {
       // Layout ParentView 组件特殊处理
       if (route.component === "Layout") {
         route.component = Layout
-        console.log("🚀🚀🚀 ~ route.component:", route.component, Layout)
       } else {
-        console.log("🚀🚀🚀🚀🚀 ~ route.component:", route.component)
         route.component = loadView(route.component)
       }
     }
@@ -100,7 +93,6 @@ export const loadView = (view: RouterState) => {
   for (const path in modules) {
     const dir = path.split("views/")[1].split(".vue")[0]
     if (dir === view) {
-      console.log("🚀 ~ loadView ~ dir === view:", modules, dir, view)
       res = () => modules[path]()
     }
   }
