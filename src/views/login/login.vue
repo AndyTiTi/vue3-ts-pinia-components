@@ -43,8 +43,9 @@
 import { ref } from "vue"
 import PaneAccount from "./PaneAccount.vue"
 import PanePhone from "./PanePhone.vue"
+import { localCache } from "@/plugins/cache"
 const activeName = ref("account")
-const rememberMe = ref(false)
+const rememberMe = ref(localCache.get("rememberMe") ?? false)
 
 const accountRef = ref<InstanceType<typeof PaneAccount>>()
 const phoneRef = ref<InstanceType<typeof PanePhone>>()
@@ -52,7 +53,7 @@ const phoneRef = ref<InstanceType<typeof PanePhone>>()
 function handleLoginClick() {
   if (activeName.value === "account") {
     // 获取子组件的实例
-    accountRef.value?.loginAction()
+    accountRef.value?.loginAction(rememberMe.value)
     console.log("account")
   } else {
     phoneRef.value?.loginAction()

@@ -22,11 +22,12 @@ import useUserStore from "@/store/modules/user"
 import { ElMessage, type ElForm, type FormRules } from "element-plus"
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
+import { localCache } from "@/plugins/cache"
 const router = useRouter()
 const userStore = useUserStore()
 const form = reactive({
-  account: "",
-  password: ""
+  account: localCache.get("name") ?? "",
+  password: localCache.get("password") ?? ""
 })
 const formRef = ref<InstanceType<typeof ElForm>>()
 const rules: FormRules = {
@@ -45,9 +46,18 @@ const rules: FormRules = {
   password: [{ required: true, message: "请输入密码", trigger: "blur" }]
 }
 
-function loginAction() {
+function loginAction(rememberMe: boolean) {
   formRef.value?.validate(valid => {
     if (valid) {
+      if (rememberMe) {
+        localCache.set("name", form.account)
+        localCache.set("password", form.password)
+        localCache.set("rememberMe", rememberMe)
+      } else {
+        localCache.remove("name")
+        localCache.remove("password")
+        localCache.remove("rememberMe")
+      }
       // 验证通过，可以进行登录操作
       userStore.accountLogin(form).then(res => {
         console.log("🚀 ~ userStore.accountLogin ~ res:", res)
