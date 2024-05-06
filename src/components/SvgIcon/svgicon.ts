@@ -15,12 +15,12 @@ const components: Record<string, any> = {
 //   }
 // }
 
-
 // 方式一
 function registerIcons(app: App<Element>) {
   for (const key in components) {
+    console.log("🚀 ~ registerIcons ~ key:", key)
     app.component(key, components[key])
   }
 }
 
-export default registerIcons;
+export default registerIcons

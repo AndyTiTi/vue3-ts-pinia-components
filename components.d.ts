@@ -8,7 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppMain: typeof import('./src/components/AppMain/index.vue')['default']
+    b: typeof import('./src/components/Sidebar b/index.vue')['default']
+    bak: typeof import('./src/components/Sidebar bak/index.vue')['default']
     Breadcrumb: typeof import('./src/components/Breadcrumb/index.vue')['default']
+    copy: typeof import('./src/components/Sidebar copy/index.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
@@ -51,7 +54,9 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./src/components/Sidebar/index.vue')['default']
+    SidebarItem: typeof import('./src/components/Sidebar/SidebarItem.vue')['default']
     SingleImageUpload: typeof import('./src/components/SingleImageUpload/index.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
+    TreeMenu: typeof import('./src/components/Sidebar/TreeMenu.vue')['default']
   }
 }

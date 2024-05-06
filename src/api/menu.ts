@@ -24,7 +24,7 @@ export type MenuRouter = {
 export const getRouters = (): Promise<MenuRouter[]> => {
   return new Promise(resolve => {
     console.log("🚀 ~ 请求API 获取 routes")
-    const data = [
+    const data: any = [
       {
         name: "Tool",
         path: "/tool",
@@ -63,19 +63,99 @@ export const getRouters = (): Promise<MenuRouter[]> => {
             }
           }
         ]
+      },
+      {
+        name: "System",
+        path: "/system",
+        hidden: false,
+        redirect: "noRedirect",
+        component: "Layout",
+        alwaysShow: true,
+        meta: {
+          title: "系统管理",
+          icon: "Operation",
+          noCache: false,
+          link: null
+        },
+        children: [
+          {
+            name: "User",
+            path: "user",
+            hidden: false,
+            component: "system/user/index",
+            meta: {
+              title: "用户管理",
+              icon: "peoples",
+              noCache: false,
+              link: null
+            }
+          },
+          {
+            name: "Role",
+            path: "role",
+            hidden: false,
+            component: "system/role/index",
+            meta: {
+              title: "角色管理",
+              icon: "peoples",
+              noCache: false,
+              link: null
+            }
+          },
+          {
+            name: "Dept",
+            path: "dept",
+            hidden: false,
+            component: "system/dept/index",
+            meta: {
+              title: "部门管理",
+              icon: "tree",
+              noCache: false,
+              link: null
+            }
+          },
+          {
+            name: "Log",
+            path: "log",
+            hidden: false,
+            redirect: "noRedirect",
+            component: "ParentView",
+            alwaysShow: true,
+            meta: {
+              title: "日志管理",
+              icon: "log",
+              noCache: false,
+              link: null
+            },
+            children: [
+              {
+                name: "Operlog",
+                path: "operlog",
+                hidden: false,
+                component: "monitor/operlog/index",
+                meta: {
+                  title: "操作日志",
+                  icon: "form",
+                  noCache: false,
+                  link: null
+                }
+              },
+              {
+                name: "Logininfor",
+                path: "logininfor",
+                hidden: false,
+                component: "monitor/logininfor/index",
+                meta: {
+                  title: "登录日志",
+                  icon: "logininfor",
+                  noCache: false,
+                  link: null
+                }
+              }
+            ]
+          }
+        ]
       }
-      // {
-      //   name: "Http://ruoyi.vip",
-      //   path: "http://ruoyi.vip",
-      //   hidden: false,
-      //   component: "Layout",
-      //   meta: {
-      //     title: "若依官网",
-      //     icon: "guide",
-      //     noCache: false,
-      //     link: "http://ruoyi.vip"
-      //   }
-      // }
     ]
     setTimeout(() => {
       resolve(data)

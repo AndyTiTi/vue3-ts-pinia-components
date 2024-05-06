@@ -1,6 +1,6 @@
 <template>
   <el-menu
-    :default-active="route.path"
+    :default-active="activeMenu"
     class="el-menu-vertical-demo"
     :collapse="isCollapse"
     background-color="#324157"
@@ -8,103 +8,44 @@
     active-text-color="#20a0ff"
     unique-opened
   >
-    <template v-for="item in menu">
-      <template v-if="item.children && item.children.length > 0">
-        <el-sub-menu
-          v-if="!item.meta?.hidden"
-          :key="item.path"
-          :index="item.path"
-        >
-          <template #title>
-            <el-icon v-if="item.meta?.icon">
-              <component :is="item.meta?.icon" />
-            </el-icon>
-            <span>{{ item.meta?.title }}1</span>
-          </template>
-          <template v-for="subItem in item.children">
-            <el-sub-menu
-              v-if="subItem.children && subItem.children.length > 0"
-              :key="subItem.path"
-              :index="subItem.path"
-            >
-              <template #title>
-                <el-icon v-if="subItem.meta?.icon">
-                  <component :is="subItem.meta?.icon" />
-                </el-icon>
-                {{ subItem.meta?.title }}2C
-              </template>
-              <el-menu-item
-                v-for="threeItem in subItem.children"
-                :key="threeItem.path"
-                :index="threeItem.path"
-              >
-                <router-link
-                  :to="`${item.path}/${subItem.path}/${threeItem.path}`"
-                >
-                  <el-icon v-if="threeItem.meta?.icon">
-                    <component :is="threeItem.meta?.icon" />
-                  </el-icon>
-                  {{ threeItem.meta?.title }}3
-                </router-link>
-              </el-menu-item>
-            </el-sub-menu>
-            <el-menu-item
-              v-else
-              :key="subItem.path + '_1'"
-              :index="subItem.path"
-            >
-              <router-link :to="`${item.path}/${subItem.path}`">
-                <el-icon v-if="subItem.meta?.icon">
-                  <component :is="subItem.meta?.icon" />
-                </el-icon>
-                {{ subItem.meta?.title }}2
-              </router-link>
-            </el-menu-item>
-          </template>
-        </el-sub-menu>
-      </template>
-      <template v-else>
-        <router-link :to="item.path">
-          <el-menu-item
-            v-if="!item.meta?.hidden"
-            :key="item.path"
-            :index="item.path"
-          >
-            <el-icon>
-              <component :is="item.meta?.icon" />
-            </el-icon>
-            <template #title>{{ item.meta?.title }}5</template>
-          </el-menu-item>
-        </router-link>
-      </template>
-    </template>
+    <SidebarItem
+      v-for="(route, index) in menu"
+      :key="route.path + index"
+      :item="route"
+      :base-path="route.path"
+    />
   </el-menu>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" name="SidebarItem">
 import { computed } from "vue"
 import { useRoute } from "vue-router"
+import router from "@/router"
 import useSidebar from "@/store/modules/sidebar"
 import useAuthRoutesStore from "@/store/modules/routes"
+import SidebarItem from "./SidebarItem.vue"
 
 const route = useRoute()
 const sidebarStatus = useSidebar()
 const mergedRoutes = useAuthRoutesStore()
 // 从 store 中获取路由数据
 const menu = computed(() => mergedRoutes.routes)
+console.log("🚀 ~ menu:", router.getRoutes())
 const isCollapse = computed(() => {
   return sidebarStatus.sidebar
 })
 
-const activeIndex = computed(() => {
+const activeMenu = computed(() => {
   const { meta, path } = route
   // if set path, the sidebar will highlight the path you set
   if (meta.activeMenu) {
     return meta.activeMenu
   }
+  console.log("🚀🚀🚀 ~ activeIndex ~ path:", path)
   return path
 })
 </script>
+
 <style lang="scss" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;

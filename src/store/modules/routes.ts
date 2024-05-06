@@ -1,6 +1,7 @@
 import { defineStore } from "pinia"
 import { getRouters, type MenuRouter, type RouterState } from "@/api/menu"
 import Layout from "@/layout/index.vue"
+import ParentView from "@/components/ParentView/index.vue"
 import constantRoutes from "@/router/constantRoutes"
 
 // 匹配views里面所有的.vue文件
@@ -16,12 +17,23 @@ const useRoutes = defineStore("authRoutes", {
     setAuthRouter(route: any[]) {
       this.routes = constantRoutes.concat(route)
     },
+
     getMergeRoutes(): Promise<MenuRouter[]> {
       return new Promise(resolve => {
         getRouters().then(res => {
+          const sdata = JSON.parse(JSON.stringify(res))
           const rdata = JSON.parse(JSON.stringify(res))
+          // 用于导航菜单，根据数据渲染成 routes，忠实地显示后台返回的数据，无论 children 嵌套多少层
+          const sidebarRoutes = filterAsyncRouter(sdata)
+          // 拍平除了一级路由下其他所有有 children 的二级路由，用于路由导航
           const rewriteRoutes = filterAsyncRouter(rdata, undefined, true)
-          this.setAuthRouter(rewriteRoutes)
+          console.log(
+            "🚀 ~ getRouters ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ rewriteRoutes:",
+            sidebarRoutes,
+            rewriteRoutes
+          )
+          this.setAuthRouter(sidebarRoutes)
+          // rewriteRoutes没有children的，需要添加children，但是不会出现 el-sub-menu 的显示效果，必须是 sidbarRoutes 才会与这种效果
           resolve(rewriteRoutes)
         })
       })
@@ -43,6 +55,8 @@ function filterAsyncRouter(
       // Layout ParentView 组件特殊处理
       if (route.component === "Layout") {
         route.component = Layout
+      } else if (route.component === "ParentView") {
+        route.component = ParentView
       } else {
         route.component = loadView(route.component)
       }
@@ -61,6 +75,7 @@ function filterAsyncRouter(
     return true
   })
 }
+
 function filterChildren(
   childrenMap: MenuRouter[] = [],
   _lastRouter: MenuRouter | undefined = undefined

@@ -4,7 +4,7 @@ import { localCache } from "@/plugins/cache"
 const whiteList = ["/login"]
 let flag = true
 router.beforeEach((to, from, next) => {
-  const { token } = localCache.get("user")
+  const { token } = localCache.get("user") ?? {}
   console.log("🚀 1~ router.beforeEach ~ to:", to, token)
   if (token) {
     console.log("🚀 2~ router.beforeEach ~ to:", to, from)

@@ -1,13 +1,7 @@
 <template>
-  <div>
-    DEPT
-  </div>
+  <div>OPERLOG</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

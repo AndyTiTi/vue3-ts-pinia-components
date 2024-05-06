@@ -70,7 +70,7 @@ function handleLoginClick() {
   height: 100vh;
   width: 100%;
   /* 添加磨砂效果，使用径向渐变模糊 */
-  background-image: linear-gradient(135deg, #a5d2df 0%, #07829e 100%),
+  background-image: linear-gradient(200deg, #77a2d7 0%, #2c5d9a 100%),
     radial-gradient(
       circle at center,
       rgba(255, 255, 255, 0.3),
